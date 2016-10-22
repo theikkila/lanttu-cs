@@ -8,7 +8,7 @@ config = json.load(open('servers.json'))
 
 
 def command(server):
-    return "docker stop {server} && docker rm {server}".format(**server)
+    return "docker kill {server} && docker rm {server}".format(**server)
 
 for server in config['servers']:
     if server['host'] != host:
