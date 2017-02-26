@@ -3,11 +3,13 @@ Lantun CS-palvelinten conffit
 
 
 ## Ohjeet
+_Huom vanha ohje alla oleva rivi_
 Kopioi `csconfig/` hakemistossa olevat tiedostot `/opt/csgo/config` -hakemistoon
 
 Buildaa container
-`docker build -t lanttu/csgo .`
+`docker build --no-cache=true -t lanttu/csgo .`
 
+_Mene suoraan servers.jsonin konffaamiseen, vanha konffi...._
 Aja container (huom. vaihda hostname/ip!!!)
 
 ```
@@ -17,6 +19,7 @@ docker run --name cs7 -v /opt/csgo/config:/home/steam/csgo/csgo/cfg/lanttu -p 10
 
 ## servers.json
 
+Muista vaihtaa GSLT-tokenit! Löytyy valven sivuilta.
 ```
 {
   "servers": [
@@ -36,9 +39,13 @@ docker run --name cs7 -v /opt/csgo/config:/home/steam/csgo/csgo/cfg/lanttu -p 10
 
 
 ```
+# poista vanhat servut
+docker rm <container idt>
+
 # generoi konffis
-python runner.py
-# aja basi
+python runner.py | sh
+
+# nauti
 ```
 
 Palvelimelle pitäisi nyt voida yhdistääsuoraan IP-osoitteella.
